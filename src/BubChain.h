@@ -3,6 +3,7 @@
 #define BUBCHAIN_H
 
 #include "BubBlock.h"
+#include "BlockData.h"
 using namespace std;
 
 class BubChain {
@@ -15,11 +16,12 @@ public:
     }
 
     // Adds a block to the block chain
-    bool addBlock(const string& data) {
+    bool addBlock(BlockData& data) {
         int idx = chain.size();
         string prevHash = chain.back().getHash();
         string key = "key";
-        BubBlock block(idx, data, prevHash, key);
+        string bd = data.getData(); 
+        BubBlock block(idx, bd, prevHash, key);
 
         // Validates the block
         if (validateBlock(block)) {

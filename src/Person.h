@@ -1,5 +1,9 @@
 //Person.h
+#ifndef PERSON_H
+#define PERSON_H
+
 #include "header.h"
+#include "BlockData.h"
 using namespace std;
 
 class Person {
@@ -43,13 +47,37 @@ public:
             double reward = getRewardAmount(bc);  // Pass BubCoin reference to get the reward
 
             string blockData = name + " Mined " + to_string(reward) + " BubCoin!";
-            if (chain.addBlock(blockData)) {
+            BlockData data(this->name, "mined", blockData);
+            if (chain.addBlock(data)) {
                 addCrypto(reward);
                 bc.updateCirculatingSupply(reward);
                 cout << name << " Has helped out the BubChain! They have received " << reward << " BubCoin!\n";
             }
         } else {
             cout << endl << name << " Not a Miner... can't do this";
+        }
+    }
+
+    // Create transaction between sender and receiver
+    void tradeCrypto(Person& receiver, double amt, BubCoin& bc, BubChain& chain) {
+        if (cryptoOwned >= amt) {
+            // Deduct from sender and add to receiver
+            this->deductCrypto(amt);
+            receiver.addCrypto(amt);
+
+            // Record the transaction in the BubCoin ledger (simplified)
+            string transactionMessage = this->name + " sent " + to_string(amt) + " BubCoins to " + receiver.name;
+            BlockData transactionData(this->name, "trade", transactionMessage);
+
+            // Add the transaction to the blockchain
+            chain.addBlock(transactionData); // This adds the transaction to the chain
+
+            // Optionally update the circulating supply (if relevant)
+            bc.updateCirculatingSupply(amt);
+
+            cout << this->name << " successfully sent " << amt << " BubCoins to " << receiver.name << "\n";
+        } else {
+            cout << "Transaction Failed: " << this->name << " has insufficient funds.\n";
         }
     }
 
@@ -97,3 +125,5 @@ private:
     }
 
 };
+
+#endif

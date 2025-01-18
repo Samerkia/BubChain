@@ -28,7 +28,7 @@ int main() {
     Person charles("Charles", true, false);  // Charles is also a miner
     Person bob("Bob", false, false);  // Bob is not a miner
 
-    cout << "Initial  values\n\n";
+    cout << "Initial values\n\n";
     // Display blockchain and coin info
     chain.displayBubChain();
     bc.displayBubCoinInfo();
@@ -37,6 +37,8 @@ int main() {
     alice.mineCrypto(bc, chain);
     charles.mineCrypto(bc, chain);
 
+    // Simulate trade
+    alice.tradeCrypto(bob, 10, bc, chain);
     cout << "Final values\n\n";
     // Display blockchain and coin info
     chain.displayBubChain();

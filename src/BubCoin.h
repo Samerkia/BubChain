@@ -27,26 +27,6 @@ public:
         setInitialCoinPrice();
     }
 
-    // Transaction of a coin
-    // This should be moved to person as they send/receive the coin
-    // Then will need to add proper logic to update blocks 
-    void createTransaction(string sender, string receiver, double amt) {
-        if (balances[sender] >= amt) {
-            balances[sender] -= amt;
-            balances[receiver] += amt;
-            ledger.push_back(sender + " sent " + to_string(amt) + " BubCoins to " + receiver);
-        } else {
-            cout << "FAILED TRANSACTION: " << sender << " DOES NOT HAVE ENOUGH BUBCOIN TO SEND";
-        }
-    }
-
-    // Shows the transaction record of the BubCoin network
-    void displayLedger() const {
-        for (const auto& entry : ledger) {
-            cout << entry << endl;
-        }
-    }
-
     // Sets the initial coin price
     void setInitialCoinPrice() {
         if (totalSupply == -1) {
@@ -110,8 +90,6 @@ public:
 
 private:
     double price;                   // Price of the BubCoin
-    map<string, double> balances;   // Tracks balance of each user
-    vector<string> ledger;          // Transaction record holder
     double totalSupply;             // Max Supply of the BubCoin
     double circulatingSupply;       // Circulating Supply as in how much is there to buy?
     bool isInfinite;                // is there an infinite amount of this coin?
