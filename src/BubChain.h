@@ -1,7 +1,6 @@
 #ifndef BUBCHAIN_H
 #define BUBCHAIN_H
 
-#include <vector>
 #include "BubBlock.h"
 using namespace std;
 

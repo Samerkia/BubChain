@@ -1,10 +1,6 @@
 #ifndef BUBCOIN_H
 #define BUBCOIN_H
 
-#include <map>
-#include <string>
-#include <vector>
-#include <iostream>
 using namespace std;
 
 class BubCoin {

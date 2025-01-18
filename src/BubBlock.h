@@ -1,7 +1,7 @@
 #ifndef BUBBLOCK_H
 #define BUBBLOCK_H
 
-#include "header.h" // Include for calculateBlockHash declaration
+#include "header.h"
 using namespace std;
 
 class BubBlock {
