@@ -1,3 +1,4 @@
+//BubBlock.h
 #ifndef BUBBLOCK_H
 #define BUBBLOCK_H
 
@@ -19,16 +20,17 @@ public:
 
     //Display Block
     void displayBlock() const {
-        std::cout << "-----------------------------\n";
-        cout << "Block: " << index << endl;
+        if (index == 0) cout << "Genesis Block"<< endl;
+        else cout << "Block: " << index << endl;
         cout << "Timestamp: " << timestamp << endl;
         cout << "Data: " << data << endl;
         cout << "Previous Hash: " << previousHash << endl;
-        std::cout << "Miner: " << miner << "\n";
+        cout << "Miner: " << miner << "\n";
         cout << "Hash: " << hash << endl;
-        std::cout << "-----------------------------\n";
+        cout << "-----------------------------\n";
     }
 
+    // Returns the hash of the block
     string getHash() {
         return hash;
     }
